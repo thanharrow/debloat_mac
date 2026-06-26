@@ -49,6 +49,34 @@ Execute the script:
 
 ---
 
+## 🌐 Cloudflare WARP Control (`warp.sh`)
+
+If you use Cloudflare WARP but want to completely stop and freeze its background daemon and GUI client when not in use (saving RAM, CPU, and battery), you can use the `warp.sh` script.
+
+### 1. Make the Script Executable
+
+```bash
+chmod +x warp.sh
+```
+
+### 2. Turn Cloudflare WARP OFF
+
+To stop the daemon, prevent it from auto-starting, and close the running GUI client:
+
+```bash
+sudo ./warp.sh off
+```
+
+### 3. Turn Cloudflare WARP ON
+
+To re-enable and start the background daemon:
+
+```bash
+sudo ./warp.sh on
+```
+
+---
+
 ## 🔍 Verification
 
 To verify that the applications and their hidden extensions are no longer wasting your RAM/CPU, you can audit them using the `ps` command. For example:
