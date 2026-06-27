@@ -52,6 +52,8 @@ Execute the script:
 ```
 
 > **Note:** The script might prompt you for your administrator password (`sudo`) because disabling certain system-level background processes requires root privileges.
+>
+> **⚠️ Reboot Notice:** Every time macOS restarts, some of these background services and widgets may be reloaded/re-registered by the operating system. Therefore, you should run the `debloat_mac.sh` script again after each reboot.
 
 ---
 
@@ -83,20 +85,30 @@ sudo ./warp.sh on
 
 ---
 
-## 🔎 Spotlight Indexing Control (`spotlight_index_off.sh`)
+## 🔎 Spotlight Indexing Control (`spotlight.sh`)
 
-If you want to completely disable Spotlight indexing to save disk read/write activity and CPU resources, you can run the `spotlight_index_off.sh` script.
+If you want to control Spotlight indexing to save disk read/write activity and CPU resources, you can use the `spotlight.sh` script.
 
 ### 1. Make the Script Executable
 
 ```bash
-chmod +x spotlight_index_off.sh
+chmod +x spotlight.sh
 ```
 
-### 2. Run the Script
+### 2. Turn Spotlight Indexing OFF
+
+To stop indexing and erase existing search indexes:
 
 ```bash
-sudo ./spotlight_index_off.sh
+sudo ./spotlight.sh off
+```
+
+### 3. Turn Spotlight Indexing ON
+
+To re-enable indexing and rebuild the search database:
+
+```bash
+sudo ./spotlight.sh on
 ```
 
 ---
@@ -150,6 +162,17 @@ ps aux | grep -i Home.app
 ```
 
 **Expected Result:** You should only see the single `grep` command itself running. All background widget pipelines (`.appex`) are successfully terminated.
+
+### 💡 Visualizing Memory Usage (Alternative)
+Instead of searching manually with `ps aux`, you can use **[mem](https://github.com/thanhngch/mem)**, a terminal utility that groups processes and visualizes your Mac's memory usage:
+
+```bash
+# Clone and install mem
+git clone https://github.com/thanhngch/mem.git
+cd mem && go build -o ~/go/bin/mem
+```
+
+Then simply run `mem` to view a cleanly aggregated process list.
 
 ---
 
