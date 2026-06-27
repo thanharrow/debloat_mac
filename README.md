@@ -83,6 +83,42 @@ sudo ./warp.sh on
 
 ---
 
+## 🔎 Spotlight Indexing Control (`spotlight_index_off.sh`)
+
+If you want to completely disable Spotlight indexing to save disk read/write activity and CPU resources, you can run the `spotlight_index_off.sh` script.
+
+### 1. Make the Script Executable
+
+```bash
+chmod +x spotlight_index_off.sh
+```
+
+### 2. Run the Script
+
+```bash
+sudo ./spotlight_index_off.sh
+```
+
+---
+
+## 🛠️ Chrome DevTools MCP Cleaner (`killall_chrome_devtools_mcp.sh`)
+
+When the Antigravity agent runs, the Chrome DevTools MCP server may auto-start. You can use this script to terminate the background server process.
+
+### 1. Make the Script Executable
+
+```bash
+chmod +x killall_chrome_devtools_mcp.sh
+```
+
+### 2. Run the Script
+
+```bash
+./killall_chrome_devtools_mcp.sh
+```
+
+---
+
 ## 🔍 Verification
 
 To verify that the applications and their hidden extensions are no longer wasting your RAM/CPU, you can audit them using the `ps` command. For example:
