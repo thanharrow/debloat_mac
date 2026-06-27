@@ -6,7 +6,7 @@ Since modern macOS versions protect the system volume via **Signed System Volume
 
 ## 🚫 What This Script Disables
 
-This script targets and shuts down both the core agents and hidden widget/Siri extensions for the following **15 apps/services**:
+This script targets and shuts down both the core agents and hidden widget/Siri extensions for the following **17 apps/services**:
 1. **News.app** (Core daemon, Today widgets, News tags, and Siri intents)
 2. **Home.app** (Homed daemon, HomeHub syncing, Interactive & Energy widgets)
 3. **Stocks.app** (Stocks daemon and finance widgets)
@@ -22,6 +22,8 @@ This script targets and shuts down both the core agents and hidden widget/Siri e
 13. **Shortcuts.app** (Shortcuts widget, view service, and actions daemon)
 14. **Photos.app** (Photos Relive widget extension)
 15. **Tips.app** (Tips daemon and widget extension)
+16. **Messages.app** (Messages Action Extension)
+17. **FindMy.app** (Find My Widgets People & Items)
 
 ---
 
