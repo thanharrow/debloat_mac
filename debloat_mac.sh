@@ -103,10 +103,11 @@ sudo launchctl disable system/com.apple.siri.analytics.assistantd 2>/dev/null
 # 10.3. Force kill running Siri processes to free RAM immediately
 killall siriactionsd siriinferenced siriknowledged sirittsd SAExtensionOrchestrator SiriSuggestionsBookkeepingService SiriAUSP 2>/dev/null
 
-# 11. Notes.app (Quick Notes Widget)
-echo "[+] Disabling Notes Widget extensions..."
+# 11. Notes.app (Widget + Spotlight Index Extension)
+echo "[+] Đang tắt Widget và Spotlight Index Extension của Notes..."
 launchctl disable "user/$UID/com.apple.Notes.WidgetExtension" 2>/dev/null
-killall com.apple.Notes.WidgetExtension 2>/dev/null
+launchctl disable "user/$UID/com.apple.Notes.SpotlightIndexExtension" 2>/dev/null
+killall com.apple.Notes.WidgetExtension com.apple.Notes.SpotlightIndexExtension 2>/dev/null
 
 # 12. Reminders.app (Reminders Widget)
 echo "[+] Disabling Reminders Widget extensions..."
@@ -130,6 +131,17 @@ echo "[+] Disabling Tips daemon and Widget extension..."
 launchctl disable "user/$UID/com.apple.tipsd" 2>/dev/null
 launchctl disable "user/$UID/com.apple.tips.Widget" 2>/dev/null
 killall tipsd TipsWidgetExtension 2>/dev/null
+
+# 16. Messages.app (Messages Action Extension)
+echo "[+] Disabling Messages Action Extension..."
+launchctl disable user/$UID/com.apple.MobileSMS.MessagesActionExtension 2>/dev/null
+killall MessagesActionExtension 2>/dev/null
+
+# 17. FindMy.app (Find My Widgets)
+echo "[+] Disabling Find My Widgets..."
+launchctl disable user/$UID/com.apple.findmy.FindMyWidgetPeople 2>/dev/null
+launchctl disable user/$UID/com.apple.findmy.FindMyWidgetItems 2>/dev/null
+killall FindMyWidgetPeople FindMyWidgetItems 2>/dev/null
 
 echo "============================================="
 echo "  DEBLOAT COMPLETE! YOUR MAC IS NOW CLEAN.   "
