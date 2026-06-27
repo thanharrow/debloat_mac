@@ -119,6 +119,28 @@ chmod +x killall_chrome_devtools_mcp.sh
 
 ---
 
+## ⚙️ Manual System Settings Adjustments
+
+For the best performance and to completely eliminate background synchronization overhead, you can configure these settings manually in macOS System Settings:
+
+### 1. Disable Spotlight Search & Indexing
+To prevent Spotlight from indexing your drives and consuming CPU/disk write cycles in the background:
+1. Open **System Settings** > **Siri & Spotlight**.
+2. Scroll down to the **Spotlight** section.
+3. Uncheck categories you do not want indexed, or click on **Spotlight Privacy...** and add your drive (e.g., `Macintosh HD`) to disable indexing completely.
+
+![Disable Spotlight](disable_spotlight.jpg)
+
+### 2. Disable iCloud Drive Syncing
+iCloud background daemons (`cloudd`, `bird`) can frequently cause high CPU usage and data sync loops. To disable iCloud sync:
+1. Open **System Settings** > **[Your Name / Apple ID]** > **iCloud**.
+2. Click on **iCloud Drive**.
+3. Toggle off **Sync this Mac**.
+
+![Disable iCloud Sync](disable_icloud_sync.jpg)
+
+---
+
 ## 🔍 Verification
 
 To verify that the applications and their hidden extensions are no longer wasting your RAM/CPU, you can audit them using the `ps` command. For example:

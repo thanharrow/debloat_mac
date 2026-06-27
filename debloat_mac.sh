@@ -104,7 +104,7 @@ sudo launchctl disable system/com.apple.siri.analytics.assistantd 2>/dev/null
 killall siriactionsd siriinferenced siriknowledged sirittsd SAExtensionOrchestrator SiriSuggestionsBookkeepingService SiriAUSP 2>/dev/null
 
 # 11. Notes.app (Widget + Spotlight Index Extension)
-echo "[+] Đang tắt Widget và Spotlight Index Extension của Notes..."
+echo "[+] Disabling Notes widget and Spotlight Index Extension..."
 launchctl disable "user/$UID/com.apple.Notes.WidgetExtension" 2>/dev/null
 launchctl disable "user/$UID/com.apple.Notes.SpotlightIndexExtension" 2>/dev/null
 killall com.apple.Notes.WidgetExtension com.apple.Notes.SpotlightIndexExtension 2>/dev/null
