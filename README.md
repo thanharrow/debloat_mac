@@ -153,6 +153,20 @@ iCloud background daemons (`cloudd`, `bird`) can frequently cause high CPU usage
 
 ![Disable iCloud Sync](disable_icloud_sync.jpg)
 
+### 3. Reduce Motion
+To save GPU and CPU rendering power by reducing macOS visual effects and animations:
+1. Open **System Settings** > **Accessibility** > **Display**.
+2. Toggle on **Reduce motion**.
+
+![Reduce Motion](reduce_motion.jpg)
+
+### 4. Adjust Screen Refresh Rate
+If you have a ProMotion (120Hz) Mac, limiting the refresh rate to 60Hz can significantly improve battery life:
+1. Open **System Settings** > **Displays**.
+2. Under **Refresh rate**, select **60 Hertz** instead of **ProMotion**.
+
+![Screen Refresh Rate](screen_refresh_rate.jpg)
+
 ---
 
 ## 🔍 Verification
