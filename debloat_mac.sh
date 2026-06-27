@@ -71,7 +71,8 @@ disable_agent "com.apple.CalendarAgent"
 launchctl disable "user/$UID/com.apple.calendar.widget" 2>/dev/null
 launchctl disable "user/$UID/com.apple.iCal.CalendarWidgetExtension" 2>/dev/null
 launchctl disable "user/$UID/com.apple.calendar.CalendarIntentsExtension" 2>/dev/null
-killall CalendarAgent CalendarWidget CalendarWidgetExtension CalendarIntentsExtension 2>/dev/null
+launchctl disable "user/$UID/com.apple.calaccessd" 2>/dev/null
+killall CalendarAgent CalendarWidget CalendarWidgetExtension CalendarIntentsExtension calaccessd 2>/dev/nul
 
 # 9. Clock.app (Clock daemon + All Widgets)
 echo "[+] Disabling Clock daemon and widgets..."
@@ -85,6 +86,50 @@ echo "[+] Clearing system cache to apply configurations..."
 killall Dock 2>/dev/null
 killall Finder 2>/dev/null
 killall NotificationCenter 2>/dev/null
+
+# 10. Siri (Siri Core Agents, iCloud Sync & Processes)
+# 10.1. Disable Siri core agents for the user
+echo "[+] Disabling Siri background agents..."
+launchctl disable user/$UID/com.apple.siri.assistant 2>/dev/null
+launchctl disable user/$UID/com.apple.siriknowledged 2>/dev/null
+launchctl disable user/$UID/com.apple.siriinferenced 2>/dev/null
+launchctl disable user/$UID/com.apple.SiriSuggestionsBookkeepingService 2>/dev/null
+launchctl disable user/$UID/com.apple.siriactionsd 2>/dev/null
+launchctl disable user/$UID/com.apple.siri.AUSP 2>/dev/null
+
+# 10.2. Disable Siri iCloud sync daemon (requires sudo)
+sudo launchctl disable system/com.apple.siri.analytics.assistantd 2>/dev/null
+
+# 10.3. Force kill running Siri processes to free RAM immediately
+killall siriactionsd siriinferenced siriknowledged sirittsd SAExtensionOrchestrator SiriSuggestionsBookkeepingService SiriAUSP 2>/dev/null
+
+# 11. Notes.app (Quick Notes Widget)
+echo "[+] Disabling Notes Widget extensions..."
+launchctl disable "user/$UID/com.apple.Notes.WidgetExtension" 2>/dev/null
+killall com.apple.Notes.WidgetExtension 2>/dev/null
+
+# 12. Reminders.app (Reminders Widget)
+echo "[+] Disabling Reminders Widget extensions..."
+launchctl disable "user/$UID/com.apple.reminders.WidgetExtension" 2>/dev/null
+killall RemindersWidgetExtension 2>/dev/null
+
+# 13. Shortcuts.app (Shortcuts + Widgets)
+echo "[+] Disabling Shortcuts widget and background service..."
+launchctl disable "user/$UID/com.apple.shortcuts.ShortcutsWidget" 2>/dev/null
+launchctl disable "user/$UID/com.apple.ShortcutsViewService" 2>/dev/null
+launchctl disable "user/$UID/com.apple.siriactionsd" 2>/dev/null
+killall ShortcutsWidgetExtension ShortcutsViewService siriactionsd 2>/dev/null
+
+# 14. Photos.app (Photos Relive Widget)
+echo "[+] Disabling Photos Relive Widget..."
+launchctl disable "user/$UID/com.apple.Photos.PhotosReliveWidget" 2>/dev/null
+killall PhotosReliveWidget 2>/dev/null
+
+# 15. Tips.app (Tips Daemon & Widget)
+echo "[+] Disabling Tips daemon and Widget extension..."
+launchctl disable "user/$UID/com.apple.tipsd" 2>/dev/null
+launchctl disable "user/$UID/com.apple.tips.Widget" 2>/dev/null
+killall tipsd TipsWidgetExtension 2>/dev/null
 
 echo "============================================="
 echo "  DEBLOAT COMPLETE! YOUR MAC IS NOW CLEAN.   "
